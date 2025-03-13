@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M7md Dev & N9r</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <style>
+body {
+    margin: 0;
+    padding: 0;
+    background: url('https://i.pinimg.com/originals/e8/4e/db/e84edb279472c7ab49e97ec276d4ffda.gif') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Press Start 2P', monospace;
+    color: #00ff00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    text-align: center;
+    overflow: hidden;
+    animation: background-flicker 3s infinite alternate;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+@keyframes background-flicker {
+    0% { filter: brightness(0.9); }
+    100% { filter: brightness(1.1); }
+}
+
+/* .video-container video {
+    width: 500px;
+    height: auto;
+    border: 2px #942f00;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(161, 35, 3, 0.8);
+    animation: flicker 1.5s infinite alternate;
+} */
+
+@keyframes flicker {
+    0% { opacity: 1; }
+    100% { opacity: 0.8; }
+}
+
+.info {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #942f00;
+    text-shadow: 0px 0px 10px #942f00, 0px 0px 20px #942f00, 0px 0px 30px #942f00;
+    letter-spacing: 2px;
+    white-space: pre-wrap;
+}
+
+.text {
+    margin-top: 20px;
+    font-size: 2em;
+    color: #942f00;
+    text-shadow: 0px 0px 10px #000000, 0px 0px 20px #000000, 0px 0px 30px #942f00;
+    letter-spacing: 3px;
+    animation: glitch 0.3s infinite alternate;
+}
+
+.marquee {
+    position: absolute;
+    font-size: 20px;
+    top: 1%;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee span {
+    font-family: 'Press Start 2P', monospace;
+    border-radius: 1%;
+    display: inline-block;
+    font-size: 2em;
+    font-weight: bold;
+    color: #000000;
+    animation: scroll 8s linear infinite
+}
+
+@keyframes scroll {
+    0% { transform: translateX(100%); }
+    50% { transform: translateX(0); }
+    100% { transform: tra+nslateX(-100%); }
+}
+
+@keyframes glitch {
+    10% { text-shadow: 3px 3px 6px #ff0000, -3px -3px 6px #ffffff; transform: skewX(7deg); }
+    100% { text-shadow: -3px -3px 6px #ff0000, 3px 3px 6px #ffffff; transform: skewX(-7deg); }
+}
+
+.textb {
+    color: rgb(255, 0, 242);
+
+    font-size: 2em;
+}
+
+.textr {
+    color: rgb(255, 0, 0);
+    font-size: 2em;
+}
+
+    </style>
+</head>
+<body>
+    <div class="marquee">
+        <span>رمضان كريم ادعولي بالتوفيق قايز</span>
+    </div>
+    <div class="info" id="ip-info">Loading IP Info...</div>
+    <div class="textb">حمودي وتروكي الزاحفيننن </div> 
+    <script>
+        // Fetch IP information without API token
+        fetch('https://ipapi.co/json/')
+            .then(response => response.json())
+            .then(data => {
+                // Format and display specific IP information
+                const info = {
+                    ip: data.ip,
+                    city: data.city,
+                    region: data.region,
+                    country: data.country,
+                    loc: data.loc,
+                    org: data.org,
+                    timezone: data.timezone
+                };
+                document.getElementById('ip-info').innerText = JSON.stringify(info, null, 2);
+            })
+            .catch(error => {
+                // Handle errors
+                document.getElementById('ip-info').innerText = 'Unable to fetch IP information.';
+                console.error('Error fetching IP info:', error);
+            });
+    </script>
+</body>
+</html>
